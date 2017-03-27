@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SimpleTweets</string>
+    <string name="app_name">Tweety</string>
     <string name="login_label">Connect to Twitter</string>
     <string name="title_activity_photos">Home Timeline</string>
-    <string name="title_activity_timeline_activty">TimelineActivty</string>
+    <string name="title_activity_timeline_activity">TimelineActivity</string>
+
+    <string name="timeline_menu_compose_text">Compose</string>
+    <string name="twitter_logo">Twitter_logo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tweet_compose_edit_text_hint">What\'s on your mind?</string>
+    <string name="tweet_compose_button_text">Tweet</string>
+
+    <string name="detail_act_edit_text_hint">Enter your reply here\.\.\.</string>
+    <string name="Detail_button_text">Save</string>
+    <string name="reply_button_text">Reply</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>

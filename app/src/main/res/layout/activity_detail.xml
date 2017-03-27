@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/DetailRelLayoutId"
+            android:padding="15dp"
+            android:background="@color/colorBlueGrey"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/DetailUserPicid"
+                android:layout_width="@dimen/detail_act_profile_image_width"
+                android:layout_height="@dimen/detail_act_profile_image_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitCenter"
+                app:riv_corner_radius="10dp"
+                app:riv_border_width="2dip"
+                app:riv_border_color="@color/colorWhite"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat"
+                app:srcCompat="@drawable/ic_tweet" />
+
+            <TextView
+                android:id="@+id/DetailUserNameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/DetailUserPicid"
+                android:layout_toRightOf="@+id/DetailUserPicid" />
+
+            <TextView
+                android:id="@+id/DetailUserTagNameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/DetailUserNameId"
+                android:layout_toEndOf="@+id/DetailUserPicid"
+                android:layout_toRightOf="@+id/DetailUserPicid"/>
+
+            <ImageView
+                android:id="@+id/TwitterIconId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"/>
+
+            <com.codepath.apps.mysimpletweets.SupportingClasses.LinkifiedTextView
+                android:id="@+id/DetailTextBodyId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="@dimen/detail_text_body_size"
+                android:layout_below="@+id/DetailUserPicid"
+                android:paddingTop="10dp"
+                android:text="TextView" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/DetailMediaId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                app:riv_corner_radius="10dp"
+                app:riv_border_width="2dip"
+                app:riv_border_color="@color/colorWhite"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat"
+                android:layout_below="@+id/DetailTextBodyId"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DetailRelativeTimeId"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/DetailMediaId"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ReplyButtonImageId"
+                android:background="@drawable/ic_reply_logo"
+                android:text="@string/reply_button_text"
+                android:layout_below="@id/DetailRelativeTimeId" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="140"
+                android:id="@+id/DetailEditTextReplyWrapperId"
+                android:layout_below="@id/ReplyButtonImageId"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/DetailEditTextId"
+                    android:layout_width="262dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/ReplyButtonImageId"
+                    android:padding="5dp"
+                    android:hint="@string/detail_act_edit_text_hint"
+                    android:background="@drawable/tweet_reply_box"
+                    android:maxLength="140"
+                    android:maxLines="5" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ReplyButtonId"
+                android:background="@drawable/ic_save"
+                android:layout_alignParentEnd="true"
+                android:text="@string/Detail_button_text"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/DetailEditTextReplyWrapperId" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</layout>

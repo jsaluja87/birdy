@@ -1,33 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.TimelineActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_timeline_activty" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/mainContentId"
+            android:layout_width="match_parent"
+            android:background="@color/colorTwitter"
+            android:layout_height="match_parent">
 
-</android.support.design.widget.CoordinatorLayout>
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorTwitter"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:id="@+id/toolbarId"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/RelViewId"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/toolbarId"
+                    android:fillViewport="true"
+                    android:background="@color/colorBlueGrey"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <android.support.v4.widget.SwipeRefreshLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/SwipeContainerId"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RecycleViewResultsId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="5dp"/>
+
+                    </android.support.v4.widget.SwipeRefreshLayout>
+                </ScrollView>
+            </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:src="@mipmap/ic_compose"
+            app:fabSize="normal"
+            android:background="@color/colorWhite"
+            android:id="@+id/TimelineFabId"
+            android:layout_width="wrap_content"
+            app:layout_anchorGravity="bottom|right|end"
+            app:layout_behavior="com.codepath.apps.mysimpletweets.models.ScrollAwareFabBehavior"
+            app:layout_anchor="@id/mainContentId"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

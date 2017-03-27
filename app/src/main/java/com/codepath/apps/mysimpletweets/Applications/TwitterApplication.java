@@ -1,6 +1,6 @@
-package com.codepath.apps.mysimpletweets;
+package com.codepath.apps.mysimpletweets.Applications;
 
-import com.codepath.apps.mysimpletweets.Activity.TwitterClient;
+import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
@@ -13,7 +13,7 @@ import android.content.Context;
  * including the image cache in memory and on disk. This also adds a singleton
  * for accessing the relevant rest client.
  *
- *     TwitterClient client = TwitterApplication.getRestClient();
+ *     RestClient client = TwitterApplication.getRestClient();
  *     // use client to send requests to API
  *
  */

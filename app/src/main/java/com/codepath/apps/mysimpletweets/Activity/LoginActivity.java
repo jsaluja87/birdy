@@ -6,12 +6,15 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+import com.codepath.apps.mysimpletweets.Activity.ActivityTimeline.TimelineActivity;
 import com.codepath.apps.mysimpletweets.R;
+import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
-
 //Where user will sign in
+
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
+    private final static String TAG = "LoginActivityLog";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	@Override
 	public void onLoginSuccess() {
         Intent i = new Intent(this, TimelineActivity.class);
-		 startActivity(i);
+        startActivity(i);
     }
 
 	// OAuth authentication flow failed, handle the error

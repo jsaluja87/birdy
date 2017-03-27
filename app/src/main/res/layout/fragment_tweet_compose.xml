@@ -1,0 +1,85 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ScrollViewId"
+        android:fillViewport="true"
+        android:background="@color/colorBlueGrey">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            tools:context="com.codepath.apps.mysimpletweets.Fragments.TweetComposeFragment">
+
+            <ImageView
+                android:id="@+id/ComposeUserImageId"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/ic_tweet" />
+
+
+            <TextView
+                android:id="@+id/ComposeUserNameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/ComposeUserImageId"
+                android:layout_toRightOf="@+id/ComposeUserImageId"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/ComposeUserScreenNameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ComposeUserNameId"
+                android:layout_toEndOf="@+id/ComposeUserImageId"
+                android:layout_toRightOf="@+id/ComposeUserImageId"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/ComposeEditTextId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/tweet_compose_edit_text_hint"
+                android:layout_marginTop="41dp"
+                android:layout_below="@+id/ComposeUserImageId"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageButton
+                android:id="@+id/ComposeSaveButtonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/ic_save"
+                android:text="@string/tweet_compose_button_text"/>
+
+            <TextView
+                android:id="@+id/tweetTextCountId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="11dp"
+                android:layout_toLeftOf="@+id/ComposeSaveButtonId"
+                android:layout_toStartOf="@+id/ComposeSaveButtonId" />
+
+            <ImageButton
+                android:id="@+id/CancelButtonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_cancel"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Cancel" />
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>
