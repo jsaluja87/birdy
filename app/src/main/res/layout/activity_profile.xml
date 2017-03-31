@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codepath.apps.mysimpletweets.Activity.ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/RLUserParentId"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/ProfileImageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/ProfileNameId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ProfileImageId"
+            android:layout_toEndOf="@+id/ProfileImageId" />
+
+        <TextView
+            android:id="@+id/ProfileTagId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_below="@+id/ProfileNameId"
+            android:layout_toRightOf="@+id/ProfileImageId"
+            android:layout_toEndOf="@+id/ProfileImageId" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/FLContainerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/RLUserParentId">
+    </FrameLayout>
+
+</RelativeLayout>

@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
@@ -78,7 +79,7 @@ public class TweetsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
             if(tweet.getUser() != null) {
                 if (!TextUtils.isEmpty(tweet.getUser().getProfileNameUrl())) {
-                    Glide.with(mContext).load(tweet.getUser().getProfileNameUrl()).into(holder.tweetProfilePicUrl);
+                    Glide.with(mContext).load(tweet.getUser().getProfileNameUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.tweetProfilePicUrl);
                 }
                 holder.tweetUser.setText(tweet.getUser().getName());
                 holder.tweetUserName.setText(tweet.getUser().getScreenName());
@@ -96,7 +97,7 @@ public class TweetsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 if (tweet.getEntities().getEntitiesMedia() != null) {
                     if(!TextUtils.isEmpty(tweet.getEntities().getEntitiesMedia().getMediaUrl())) {
                         if(tweet.getEntities().getEntitiesMedia().getType().equals("photo")) {
-                            Glide.with(mContext).load(tweet.getEntities().getEntitiesMedia().getMediaUrl()).override(1000,600).into(holder.tweetEmbeddedPicUrl);
+                            Glide.with(mContext).load(tweet.getEntities().getEntitiesMedia().getMediaUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).override(1000,300).into(holder.tweetEmbeddedPicUrl);
                         }
                     }
                 }

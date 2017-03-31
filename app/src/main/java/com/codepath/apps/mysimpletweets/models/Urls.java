@@ -26,10 +26,12 @@ public class Urls {
         Urls urls = new Urls();
         //FIXME - extract only when present
         try {
-            JSONObject jsonObject = (JSONObject) jsonArray.get(0);
-            urls.url = jsonObject.getString("url");
-            urls.display_url = jsonObject.getString("display_url");
-            urls.expanded_url = jsonObject.getString("expanded_url");
+            if(jsonArray != null) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+                urls.url = jsonObject.getString("url");
+                urls.display_url = jsonObject.getString("display_url");
+                urls.expanded_url = jsonObject.getString("expanded_url");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

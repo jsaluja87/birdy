@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ScrollViewId"
         android:fillViewport="true"
-        android:background="@color/colorBlueGrey">
+        android:background="@color/colorWhite">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
 
             <EditText
                 android:id="@+id/ComposeEditTextId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/tweet_compose_edit_text_hint"
                 android:layout_marginTop="41dp"
@@ -51,24 +51,21 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/ComposeSaveButtonId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:background="@color/colorTwitter"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/ic_save"
                 android:text="@string/tweet_compose_button_text"/>
 
             <TextView
                 android:id="@+id/tweetTextCountId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="11dp"
-                android:layout_toLeftOf="@+id/ComposeSaveButtonId"
-                android:layout_toStartOf="@+id/ComposeSaveButtonId" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/ComposeEditTextId"/>
 
             <ImageButton
                 android:id="@+id/CancelButtonId"

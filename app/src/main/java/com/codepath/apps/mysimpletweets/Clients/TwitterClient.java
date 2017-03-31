@@ -19,8 +19,8 @@ import static org.scribe.model.Verb.GET;
 public class TwitterClient extends OAuthBaseClient {
 	public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class;
 	public static final String REST_URL = "https://api.twitter.com/1.1"; //base API URL
-	public static final String REST_CONSUMER_KEY = "dDxKi9gLSsaUFiPmaJx8s2lK2";
-	public static final String REST_CONSUMER_SECRET = "ypiLNX56jMZy9rRNu1wUfkX8l63vtjmzJtcGhEp97sIY6cEtcO";
+	public static final String REST_CONSUMER_KEY = "6oTGwLUC4L1HDE41quPBOzCot";
+	public static final String REST_CONSUMER_SECRET = "B0PAKQCW8TGLyi2pmPV9EPIDhjw4ZcG03e5weYbSV1lgPGgvmC";
     public static final String REST_CALLBACK_URL = "oauth://mysimpletweets"; // Change this (here and in manifest)
 
     final static String TAG = "TwitterClient";
@@ -34,11 +34,13 @@ public class TwitterClient extends OAuthBaseClient {
         RequestParams params = new RequestParams();
         params.put("count", MAX_FETCHED_TWEETS);
         if(sinceId != -1) {params.put("since_id", sinceId);}
-        if(maxId != -1) {params.put("max_id",maxId);}
+        if(maxId != -1) {params.put("max_id",maxId);
+        }
         getClient().get(apiUrl, params, handler);
         Log.d(TAG, "URL is "+apiUrl);
     }
 
+    //Posting statuses
     public void postStatuses(AsyncHttpResponseHandler handler, String status) {
         String apiUrl = getApiUrl("statuses/update.json");
         RequestParams params = new RequestParams();
@@ -47,9 +49,28 @@ public class TwitterClient extends OAuthBaseClient {
         getClient().post(apiUrl, params, handler);
     }
 
+    //Getting the current user's credentials
     public void getUserCredentials(AsyncHttpResponseHandler handler) {
         String apiUrl = getApiUrl("account/verify_credentials.json");
         RequestParams params = new RequestParams();
         getClient().get(apiUrl, params, handler);
+    }
+
+    //Getting details of tweets the user was mentioned in
+    //Create a method for the endpoint
+    public void getMentionsTimeline(AsyncHttpResponseHandler handler, long sinceId,  long maxId) {
+        String apiUrl = getApiUrl("statuses/mentions_timeline.json");
+        RequestParams params = new RequestParams();
+        getClient().get(apiUrl, params, handler);
+        Log.d(TAG, "URL is "+apiUrl);
+    }
+
+    public void getUserTimeline(AsyncHttpResponseHandler handler, String screenName) {
+        String apiUrl = getApiUrl("statuses/user_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("count", MAX_FETCHED_TWEETS);
+        params.put("screen_name", screenName);
+        getClient().get(apiUrl, params, handler);
+        Log.d(TAG, "URL is "+apiUrl);
     }
 }

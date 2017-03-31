@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.codepath.apps.mysimpletweets.Activity.ActivityDetail;
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.Applications.TwitterApplication;
@@ -50,11 +51,13 @@ public class TweetComposeFragment extends DialogFragment {
     private TextView userName, userScreenName;
     private EditText tweetComposeView;
     private TwitterClient client;
-    private ImageButton tweetSaveButton, tweetCancelButton;
+    private Button tweetSaveButton;
+    private ImageButton tweetCancelButton;
     private TextView tweetTextCount;
     private final static String TAG = "TweetFragment";
     private User rtrievedUserInfo;
     String implicit_intent = null;
+    User user = new User();
 
     TweetComposeDraftClass tweetComposeDraftClass = new TweetComposeDraftClass(getActivity());
     public OnFragmentInteractionListener mListener;
@@ -99,21 +102,16 @@ public class TweetComposeFragment extends DialogFragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            User user = bundle.getParcelable("user");
+            user = bundle.getParcelable("user");
             implicit_intent = bundle.getString("implicit_intent");
 
             if(user != null){
-                Glide.with(getContext()).load(user.getProfileNameUrl()).into(userImage);
+                Glide.with(getContext()).load(user.getProfileNameUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(userImage);
                 userName.setText(user.getName());
                 userScreenName.setText("@" + user.getScreenName());
             }
 
         }
-        //FIXME - Add another Button to cancel posting tweet
-        //FIXME - When valid tweet is not returned, don't close the dialog
-        //FIXME - fix dialog fragment with soft keyboard
-
-
 
         if(implicit_intent != null) {
             tweetComposeView.setText(implicit_intent);
@@ -126,7 +124,7 @@ public class TweetComposeFragment extends DialogFragment {
         tweetSaveButton.setOnClickListener(v -> {
             onSendAction();
             mListener = (OnFragmentInteractionListener) getActivity();
-            mListener.onFinishEditDialog(tweetComposeView.getText().toString());
+            mListener.onFinishEditDialog(tweetComposeView.getText().toString(), user);
             dismiss();
         });
 
@@ -148,7 +146,7 @@ public class TweetComposeFragment extends DialogFragment {
                     tweetSaveButton.setOnClickListener(v -> {
                         onSendAction();
                         mListener = (OnFragmentInteractionListener) getActivity();
-                        mListener.onFinishEditDialog(tweetComposeView.getText().toString());
+                        mListener.onFinishEditDialog(tweetComposeView.getText().toString(), user);
                         dismiss();
                     });
                 }
@@ -193,7 +191,7 @@ public class TweetComposeFragment extends DialogFragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void onFinishEditDialog(String newTweet);
+        void onFinishEditDialog(String newTweet, User user);
     }
 
     public void onSendAction() {

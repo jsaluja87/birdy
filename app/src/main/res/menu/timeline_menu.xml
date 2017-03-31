@@ -2,15 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/MIActionComposeId"
+    <item android:id="@+id/MIProfileId"
         android:orderInCategory="5"
         android:title="@string/timeline_menu_compose_text"
-        android:icon="@mipmap/ic_compose"
-        app:showAsAction="always|collapseActionView"/>
-
-    <item android:id="@+id/MITwitterLogo"
-        android:title="@string/twitter_logo"
-        android:icon="@drawable/ic_twitter_logo"
+        android:icon="@drawable/ic_profile"
+        android:onClick="onProfileView"
         app:showAsAction="always|collapseActionView"/>
 
 </menu>

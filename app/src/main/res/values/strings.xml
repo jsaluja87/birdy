@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Tweety</string>
+    <string name="app_name">Fancy Tweety</string>
     <string name="login_label">Connect to Twitter</string>
     <string name="title_activity_photos">Home Timeline</string>
     <string name="title_activity_timeline_activity">TimelineActivity</string>
@@ -17,5 +17,12 @@
     <string name="Detail_button_text">Save</string>
     <string name="reply_button_text">Reply</string>
     <string name="title_activity_main">MainActivity</string>
+
+
+    <dimen name="design_fab_size_normal">90dp</dimen>
+    <dimen name="design_fab_size_mini">30dp</dimen>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

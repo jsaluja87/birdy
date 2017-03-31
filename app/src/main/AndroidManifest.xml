@@ -16,14 +16,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.LoginActivity"
+            android:icon="@drawable/ic_twitter_icon"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -35,18 +35,22 @@
                     android:scheme="oauth" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.ActivityDetail"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity.ActivityDetail"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.ActivityTimeline.TimelineActivity"
             android:label="@string/title_activity_timeline_activity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.ProfileActivity"></activity>
     </application>
 
 </manifest>
