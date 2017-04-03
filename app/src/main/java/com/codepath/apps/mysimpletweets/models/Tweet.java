@@ -9,6 +9,9 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
+import static android.util.Log.d;
+import static com.raizlabs.android.dbflow.config.FlowLog.TAG;
+
 /**
  * Created by jsaluja on 3/21/2017.
  */
@@ -24,6 +27,9 @@ public class Tweet {
     public User user;
     public String createdAt = null;
     public Entities entities;
+    public boolean favorited = false;
+    public int favoriteCount = -1;
+    public boolean retweeted = false;
 
     public String relativeDate = null;
 
@@ -63,17 +69,33 @@ public class Tweet {
 
     public void setUser(User user) {this.user = user;}
 
+    public boolean getFavorited() {return favorited;}
+
+    public void setFavorited(boolean favorited) {this.favorited = favorited;}
+
+    public int getFavoriteCount() {return favoriteCount;}
+
+    public void setFavoriteCount(int favoriteCount) {this.favoriteCount = favoriteCount;}
+
+    public boolean getRetweeted() {return retweeted;}
+
+    public void setRetweeted(boolean retweeted) {this.retweeted = retweeted;}
+
     //Deserialize the JSON and build tweet objects
     public static Tweet fromJSON(JSONObject jsonObject) {
+
         Tweet tweet = new Tweet();
         try {
-            tweet.body = jsonObject.getString("text");
-            tweet.uid = jsonObject.getLong("id");
-            tweet.uidStr = jsonObject.getString("id_str");
-            tweet.createdAt = jsonObject.getString("created_at");
-            tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
-            tweet.entities = Entities.fromJSON(jsonObject.getJSONObject("entities"));
-            Log.d("DEBUG","entities string is"+tweet.entities.toString());
+            if(jsonObject.has("text")) tweet.body = jsonObject.getString("text");
+            if(jsonObject.has("id")) tweet.uid = jsonObject.getLong("id");
+            if(jsonObject.has("id_str")) tweet.uidStr = jsonObject.getString("id_str");
+            if(jsonObject.has("created_at")) tweet.createdAt = jsonObject.getString("created_at");
+            if(jsonObject.has("user")) tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+            if(jsonObject.has("entities")) tweet.entities = Entities.fromJSON(jsonObject.getJSONObject("entities"));
+            if(jsonObject.has("favourites_count")) tweet.favoriteCount = jsonObject.getInt("favourites_count");
+            if(jsonObject.has("favorited")) d("Printing_user", "favorited is "+jsonObject.getBoolean("favorited"));
+            if(jsonObject.has("favorited")) tweet.favorited = jsonObject.getBoolean("favorited");
+            if(jsonObject.has("retweeted")) tweet.retweeted = jsonObject.getBoolean("retweeted");
         } catch (JSONException e) {
             e.printStackTrace();
         }

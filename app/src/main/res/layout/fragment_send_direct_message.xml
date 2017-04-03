@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:context="com.codepath.apps.mysimpletweets.Fragments.TweetComposeFragment">
+
+            <EditText
+                android:id="@+id/MessageUserEditTextId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:theme="@style/MyEditTextTheme"
+                android:hint="@string/direct_message_user_text_hint"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="23dp" />
+
+            <EditText
+                android:id="@+id/MessageComposeEditTextId"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="150dp"
+                android:background="@drawable/tweet_reply_box"
+                android:gravity="bottom"
+                android:padding="10dp"
+                android:hint="@string/direct_message_message_text_hint"
+                android:layout_below="@+id/MessageUserEditTextId"
+                android:layout_marginTop="52dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:id="@+id/MessageSaveButtonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorTwitter"
+                android:text="@string/direct_message_send_button_text"
+                android:layout_below="@+id/MessageComposeEditTextId"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="42dp" />
+
+            <Button
+                android:id="@+id/MessageCancelButtonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorTwitter"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignBaseline="@id/MessageSaveButtonId"
+                android:text="Cancel" />
+
+        </RelativeLayout>
+</layout>

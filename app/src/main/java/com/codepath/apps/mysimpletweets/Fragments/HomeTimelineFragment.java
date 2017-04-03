@@ -2,10 +2,19 @@ package com.codepath.apps.mysimpletweets.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.codepath.apps.mysimpletweets.Adapters.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.mysimpletweets.Adapters.TweetsRecyclerAdapter;
 import com.codepath.apps.mysimpletweets.Applications.TwitterApplication;
 import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
@@ -18,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -28,19 +38,41 @@ import cz.msebera.android.httpclient.Header;
 public class HomeTimelineFragment extends TweetListFragment {
 
     private TwitterClient client;
-    private final static String TAG = "Tweet_fetch_class";
-    Context mContext;
+    private final static String TAG = "Home Timeline fragment";
+  //  Context mContext = getActivity();
 
+
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        View view = super.onCreateView(inflater, container, savedInstanceState);
         client = TwitterApplication.getRestClient();
-        populateTimeline(sinceId, maxId, false);
+
+        InternetAlertDialogue internetAlertDialogue = new InternetAlertDialogue(mContext);
+        if(internetAlertDialogue.checkForInternet()) {
+            populateTimeline(sinceId, maxId, false);
+        }
+
+        lvTweets.addOnScrollListener(new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                maxId = tweets.get(tweets.size() - 1).getUid() - 1;
+                if(internetAlertDialogue.checkForInternet()) {
+                    populateTimeline(sinceId, maxId, false);
+                }
+                sinceId = -1;
+                maxId = -1;
+            }
+        });
+
+        return view;
     }
 
-    public void populateTimeline(long sinceId, long maxId, boolean insertAtTop) {
+    private void populateTimeline(long localSinceId, long localMaxId, boolean insertAtTop) {
 
+        smoothProgressBar.setVisibility(ProgressBar.VISIBLE);
+        Log.d(TAG, "since id is "+sinceId);
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
@@ -63,17 +95,10 @@ public class HomeTimelineFragment extends TweetListFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("DEBUG", "Response failed");
+                Log.d(TAG, "Response failed");
 
-                InternetAlertDialogue internetAlertDialogue = new InternetAlertDialogue(mContext);
-                if(!internetAlertDialogue.isNetworkAvailable()) {
-                    internetAlertDialogue.alert_user("Network Issue", "Please connect the device to an internet network!");
-                } else {
-                    if (!internetAlertDialogue.isOnline()) {
-                        internetAlertDialogue.alert_user("Network Issue", "Device network does not have internet access!");
-                    } else {
-                        Log.d("DEBUG", "!!!Device has internet access!!!");
-                    }
+                if(statusCode == 200) {
+                    alert_user("Home Timeline Result fetch failed!", "The request sent out is good. Response failed from the website!!!");
                 }
 
                 if (tweets.size() == 0) {
@@ -82,8 +107,11 @@ public class HomeTimelineFragment extends TweetListFragment {
                     OfflineTweetClass getOfflineTweetClass = new OfflineTweetClass(tweets, tweetsRecyclerAdapter);
                     getOfflineTweetClass.loadOfflineTweets();
                 }
-
             }
-        }, sinceId, maxId);
+        }, localSinceId, localMaxId);
+        Handler handlerTimer = new Handler();
+        handlerTimer.postDelayed(() -> {//Just to show the progress bar
+            smoothProgressBar.setVisibility(ProgressBar.INVISIBLE);
+        }, 500);
     }
 }

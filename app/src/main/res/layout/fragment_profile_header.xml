@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/RLUserParentId"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/profile_header_rel_layout_height">
+
+        <ImageView
+            android:id="@+id/ProfileImageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/ProfileNameId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/ProfileImageId"
+            android:layout_toRightOf="@+id/ProfileImageId"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/ProfileTagId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ProfileNameId"
+            android:layout_toEndOf="@+id/ProfileImageId"
+            android:layout_toRightOf="@+id/ProfileImageId"
+            android:text="TextView" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ProfileLinearLayoutId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/tvFollowers"
+            android:layout_width="wrap_content"
+            android:textStyle="italic"
+            android:layout_height="wrap_content"
+            android:text="5 followers" />
+
+        <TextView
+            android:id="@+id/tvFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_marginLeft="85dp"
+            android:layout_marginStart="85dp"
+            android:text="10 following" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

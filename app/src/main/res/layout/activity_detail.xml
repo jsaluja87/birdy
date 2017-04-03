@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:fillViewport="true"
@@ -11,7 +12,7 @@
             android:layout_width="match_parent"
             android:id="@+id/DetailRelLayoutId"
             android:padding="15dp"
-            android:background="@color/colorBlueGrey"
+            android:background="@color/colorWhite"
             android:layout_height="wrap_content">
 
             <com.makeramen.roundedimageview.RoundedImageView
@@ -44,6 +45,7 @@
                 android:layout_below="@+id/DetailUserNameId"
                 android:layout_toEndOf="@+id/DetailUserPicid"
                 android:layout_toRightOf="@+id/DetailUserPicid"/>
+
 
             <ImageView
                 android:id="@+id/TwitterIconId"
@@ -92,8 +94,26 @@
                 android:text="@string/reply_button_text"
                 android:layout_below="@id/DetailRelativeTimeId" />
 
-            <android.support.design.widget.TextInputLayout
+            <ImageButton
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RetweetButtonImageId"
+                android:background="@drawable/ic_retweet"
+                android:layout_marginLeft="75dp"
+                android:text="@string/reply_button_text"
+                android:layout_below="@id/DetailRelativeTimeId" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/FavoriteButtonImageId"
+                android:background="@drawable/ic_heart"
+                android:layout_marginLeft="150dp"
+                android:text="@string/reply_button_text"
+                android:layout_below="@id/DetailRelativeTimeId" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
                 app:counterEnabled="true"
                 app:counterMaxLength="140"
                 android:id="@+id/DetailEditTextReplyWrapperId"
@@ -102,7 +122,7 @@
 
                 <EditText
                     android:id="@+id/DetailEditTextId"
-                    android:layout_width="262dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_below="@id/ReplyButtonImageId"
                     android:padding="5dp"
@@ -113,15 +133,27 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <ImageButton
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/DetailDoneButtonId"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/rounded_buttons"
+                android:text="@string/detail_back_text"
+                android:layout_below="@+id/DetailEditTextReplyWrapperId"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_buttons"
+                android:textColor="@color/colorWhite"
                 android:id="@+id/ReplyButtonId"
-                android:background="@drawable/ic_save"
-                android:layout_alignParentEnd="true"
-                android:text="@string/Detail_button_text"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/DetailEditTextReplyWrapperId" />
+                android:text="@string/detail_reply_text"
+                android:layout_below="@+id/DetailEditTextReplyWrapperId"
+                android:layout_alignRight="@+id/TwitterIconId"
+                android:layout_alignEnd="@+id/TwitterIconId" />
 
         </RelativeLayout>
     </ScrollView>

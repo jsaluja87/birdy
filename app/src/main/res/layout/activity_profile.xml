@@ -6,54 +6,53 @@
     android:layout_height="match_parent"
     tools:context="com.codepath.apps.mysimpletweets.Activity.ProfileActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:id="@+id/RLUserParentId"
-        android:layout_height="150dp">
-
-        <ImageView
-            android:id="@+id/ProfileImageId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/ProfileNameId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/ProfileImageId"
-            android:layout_toEndOf="@+id/ProfileImageId" />
-
-        <TextView
-            android:id="@+id/ProfileTagId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:layout_below="@+id/ProfileNameId"
-            android:layout_toRightOf="@+id/ProfileImageId"
-            android:layout_toEndOf="@+id/ProfileImageId" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/FLContainerId"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorTwitter"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:id="@+id/profileToolbarId"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_alignBottom="@+id/profileTwitterIconImageViewId"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/RLUserParentId">
+        android:layout_alignParentStart="true">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/profileTwitterIconImageViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_twitter_logo" />
+
+    <FrameLayout
+        android:id="@+id/FLHeaderContainerId"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_below="@+id/profileToolbarId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
     </FrameLayout>
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/profileTabsId"
+        app:pstsShouldExpand="true"
+        android:layout_below="@id/FLHeaderContainerId"
+        app:pstsTextAllCaps="true"
+        android:textColor="@color/colorTwitter"
+        app:pstsUnderlineColor="@color/colorTwitter"
+        app:pstsIndicatorColor="@color/colorTwitter"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/profileViewpagerId"
+        android:layout_below="@id/profileTabsId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" />
 
 </RelativeLayout>

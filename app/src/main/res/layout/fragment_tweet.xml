@@ -5,46 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.design.widget.CoordinatorLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/RelViewId"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@id/toolbarId"
-                android:fillViewport="true"
-                android:background="@color/colorWhite"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecycleViewResultsId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="5dp"/>
 
-                <android.support.v4.widget.SwipeRefreshLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/SwipeContainerId"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:id="@+id/SmoothProgressBarId"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            style="@style/GPlusProgressBar"/>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/RecycleViewResultsId"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:padding="5dp"/>
-
-                </android.support.v4.widget.SwipeRefreshLayout>
-            </ScrollView>
+        <ProgressBar
+            android:id="@+id/ProgressBarId"
+            style="@style/ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="true" />
 
         <android.support.design.widget.FloatingActionButton
-            android:foreground="@mipmap/ic_tweet_compose"
-            app:fabSize="normal"
-            android:backgroundTint="@color/colorWhite"
-            app:borderWidth="0dp"
             android:id="@+id/TimelineFabId"
             android:layout_width="72dp"
-            app:layout_anchorGravity="bottom|right|end"
-            app:layout_behavior="com.codepath.apps.mysimpletweets.SupportingClasses.ScrollAwareFabBehavior"
-            android:layout_height="66dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:backgroundTint="@color/colorWhite"
+            android:background="@drawable/ic_compose_tweet_round"
+            android:foreground="@mipmap/ic_compose"
+            app:borderWidth="0dp"
+            app:fabSize="normal"
+            app:layout_anchor="@+id/RecycleViewResultsId"
+            app:layout_anchorGravity="bottom|right"
+            app:layout_behavior="com.codepath.apps.mysimpletweets.SupportingClasses.ScrollAwareFabBehavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

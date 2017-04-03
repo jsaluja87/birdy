@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,31 +34,27 @@ import com.codepath.apps.mysimpletweets.SupportingClasses.TweetComposeDraftClass
 import com.codepath.apps.mysimpletweets.SupportingClasses.ImplicitIntent;
 import com.codepath.apps.mysimpletweets.models.User;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.makeramen.roundedimageview.RoundedImageView;
+
+import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TweetComposeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TweetComposeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TweetComposeFragment extends DialogFragment {
 
     final static int MAX_TWEET_CHAR_ALLOWED=140;
     private ImageView userImage;
     private TextView userName, userScreenName;
-    private EditText tweetComposeView;
-    private TwitterClient client;
-    private Button tweetSaveButton;
-    private ImageButton tweetCancelButton;
+    public EditText tweetComposeView;
+    TwitterClient client;
+    public Button tweetSaveButton;
+    public ImageButton tweetCancelButton;
     private TextView tweetTextCount;
     private final static String TAG = "TweetFragment";
-    private User rtrievedUserInfo;
     String implicit_intent = null;
     User user = new User();
+    int replyTweet;
 
     TweetComposeDraftClass tweetComposeDraftClass = new TweetComposeDraftClass(getActivity());
     public OnFragmentInteractionListener mListener;
@@ -104,6 +101,8 @@ public class TweetComposeFragment extends DialogFragment {
         if (bundle != null) {
             user = bundle.getParcelable("user");
             implicit_intent = bundle.getString("implicit_intent");
+            replyTweet = bundle.getInt("reply_tweet");
+
 
             if(user != null){
                 Glide.with(getContext()).load(user.getProfileNameUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(userImage);
@@ -115,9 +114,12 @@ public class TweetComposeFragment extends DialogFragment {
 
         if(implicit_intent != null) {
             tweetComposeView.setText(implicit_intent);
+        } else if(replyTweet == 1) {
+            tweetComposeView.setText("@"+user.getScreenName());
         } else {
             tweetComposeView.setText(tweetComposeDraftClass.checkForOldTweetDraft());
         }
+
         tweetComposeView.setSelection(tweetComposeView.getText().length());
 
         this.setCancelable(false);
@@ -169,11 +171,17 @@ public class TweetComposeFragment extends DialogFragment {
             }
             dismiss();
         });
+        tweetCancelButton.setOnClickListener(v -> {
+            if(!tweetComposeView.getText().toString().equals("")) {
+                tweetComposeDraftClass.alertTweetDraft("Save Tweet?", "Would you like to save your tweet?", tweetComposeView.getText().toString());
+            }
+            dismiss();
+        });
 
         return view;
     }
 
-    public void dataBindFragmentValues(FragmentTweetComposeBinding binding) {
+    private void dataBindFragmentValues(FragmentTweetComposeBinding binding) {
         tweetComposeView = binding.ComposeEditTextId;
         tweetSaveButton = binding.ComposeSaveButtonId;
         tweetTextCount = binding.tweetTextCountId;
@@ -181,6 +189,7 @@ public class TweetComposeFragment extends DialogFragment {
 
     @Override
     public void onAttach(Context context) {
+        context = getContext();
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
@@ -225,5 +234,17 @@ public class TweetComposeFragment extends DialogFragment {
         }
 
 
+    }
+
+    public void alert_user(String title, String message) {
+        AlertDialog.Builder dialog;
+        dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle(title);
+        dialog.setMessage(message);
+        dialog.setCancelable(false);
+        dialog.setNegativeButton("Ok",
+                (dialog1, which) -> dialog1.cancel());
+        AlertDialog alertD = dialog.create();
+        alertD.show();
     }
 }

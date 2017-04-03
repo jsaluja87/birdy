@@ -1,7 +1,9 @@
 package com.codepath.apps.mysimpletweets.Adapters;
 
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.codepath.apps.mysimpletweets.R;
@@ -19,6 +21,7 @@ public class ViewHolderTweetsItem extends RecyclerView.ViewHolder {
     public LinkifiedTextView tweetBody;
     public TextView tweetCreatedAt;
     public com.makeramen.roundedimageview.RoundedImageView tweetEmbeddedPicUrl;
+    public ImageButton tweetReplyButton;
 
 
     public LinkifiedTextView getTweetBody() {return tweetBody;}
@@ -33,6 +36,7 @@ public class ViewHolderTweetsItem extends RecyclerView.ViewHolder {
         tweetBody = (LinkifiedTextView)itemView.findViewById(R.id.TweetsBodyid);
         tweetCreatedAt = (TextView)itemView.findViewById(R.id.TweetsCreatedAtId);
         tweetEmbeddedPicUrl = (com.makeramen.roundedimageview.RoundedImageView)itemView.findViewById(R.id.TweetsEmbeddedImageId);
+        tweetReplyButton = (ImageButton)itemView.findViewById(R.id.TweetsReplyButtonImageId);
 
     }
 }

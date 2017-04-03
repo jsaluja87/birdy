@@ -5,5 +5,13 @@ package com.codepath.apps.mysimpletweets;
  */
 
 public class FIXME {
-    //USE BACKGROUND THREAD TO FETCH
+    //Implicit intent function not added
+    //Swipe down not added
+    //HOW TO MANUALLY ADD TWEET?
+    //Splash page
+    //Icon
+    //add icon everywhere
+    //login activity button styling
+    //Follow fragment clickables are broken
+    //Disable failing clickables
 }

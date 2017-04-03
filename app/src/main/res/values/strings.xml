@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Fancy Tweety</string>
+    <string name="app_name">Birdy</string>
     <string name="login_label">Connect to Twitter</string>
     <string name="title_activity_photos">Home Timeline</string>
     <string name="title_activity_timeline_activity">TimelineActivity</string>
 
     <string name="timeline_menu_compose_text">Compose</string>
+    <string name="timeline_menu_search_text">Search</string>
+    <string name="timeline_menu_message_text">Messages</string>
     <string name="twitter_logo">Twitter_logo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="tweet_compose_edit_text_hint">What\'s on your mind?</string>
-    <string name="tweet_compose_button_text">Tweet</string>
+    <string name="tweet_compose_button_text">Send</string>
+
+    <string name="direct_message_send_button_text">Send</string>
+    <string name="direct_message_user_text_hint">Enter a name</string>
+    <string name="direct_message_message_text_hint">Enter message here</string>
+    <string name="message_compose_new">Compose</string>
 
     <string name="detail_act_edit_text_hint">Enter your reply here\.\.\.</string>
-    <string name="Detail_button_text">Save</string>
+    <string name="detail_reply_text">Reply</string>
+    <string name="detail_back_text">Back</string>
     <string name="reply_button_text">Reply</string>
     <string name="title_activity_main">MainActivity</string>
 

@@ -2,11 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/MIActionSearchId"
+        android:orderInCategory="1"
+        android:title="@string/timeline_menu_search_text"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item android:id="@+id/MIMessagesId"
+        android:orderInCategory="2"
+        android:title="@string/timeline_menu_message_text"
+        android:icon="@drawable/ic_message"
+        android:onClick="onMessagesView"
+        app:showAsAction="always|collapseActionView" />
+
     <item android:id="@+id/MIProfileId"
-        android:orderInCategory="5"
+        android:orderInCategory="3"
         android:title="@string/timeline_menu_compose_text"
         android:icon="@drawable/ic_profile"
         android:onClick="onProfileView"
         app:showAsAction="always|collapseActionView"/>
+
 
 </menu>
